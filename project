@@ -1,0 +1,48 @@
+project-root/
+├── backend/
+│   ├── config/
+│   │    ├── db.js             // Connessione a MongoDB
+│   │    ├── cloudinary.js     // Configurazione Cloudinary
+│   │    ├── passport.js       // Configurazione Google OAuth con Passport
+│   │    └── email.js          // Configurazione per SendGrid
+│   ├── controllers/
+│   │    ├── authController.js       // Registrazione, login, "me"
+│   │    ├── authorsController.js    // CRUD per autori + upload avatar
+│   │    └── blogPostsController.js  // CRUD per blog post, gestione cover e commenti, email di notifica
+│   ├── middleware/
+│   │    ├── auth.js           // Middleware per JWT
+│   │    └── upload.js         // Configurazione di multer per upload immagini
+│   ├── models/
+│   │    ├── Author.js         // Schema Mongoose per autori
+│   │    └── BlogPost.js       // Schema Mongoose per blog post (inclusi commenti)
+│   ├── routes/
+│   │    ├── auth.js           // Rotte per autenticazione e Google OAuth
+│   │    ├── authors.js        // Rotte per autori
+│   │    └── blogPosts.js      // Rotte per blog post e commenti
+│   ├── .env                  // Variabili d’ambiente (MongoDB, JWT, Cloudinary, Google, SendGrid)
+│   ├── package.json          // Dipendenze e script del backend
+│   └── server.js             // File principale del backend
+└── frontend/
+    ├── public/
+    ├── src/
+    │    ├── assets/                  // Immagini e file statici (es. logo.png)
+    │    ├── components/
+    │    │    ├── GoogleLoginButton.jsx   // Componente per il pulsante "Login con Google"
+    │    │    ├── navbar/
+    │    │    │     └── BlogNavbar.jsx      // Navbar (include GoogleLoginButton)
+    │    │    ├── footer/
+    │    │    │     └── Footer.jsx          // Footer
+    │    │    └── likes/
+    │    │          └── BlogLikes.jsx        // Componente per i "like" (se necessario)
+    │    ├── views/
+    │    │    ├── home/
+    │    │    │     └── Home.jsx            // Homepage
+    │    │    ├── blog/
+    │    │    │     └── Blog.jsx            // Dettaglio blog post
+    │    │    ├── new/
+    │    │    │     └── NewBlogPost.jsx     // Form per creare un nuovo articolo
+    │    │    └── Login.jsx                 // Pagina di login
+    │    ├── App.js                          // Configurazione delle rotte in React
+    │    ├── index.js                        // Punto di ingresso React
+    │    └── index.css                       // Stili globali
+    └── package.json           // Dipendenze e script del frontend
