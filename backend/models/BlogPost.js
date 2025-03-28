@@ -10,12 +10,12 @@ const CommentSchema = new mongoose.Schema({
 
 const BlogPostSchema = new mongoose.Schema(
   {
-    category: String,
+    category: { type: String, required: true },
     title: { type: String, required: true },
-    cover: String,
+    cover: { type: String }, // Non required
     readTime: {
-      value: Number,
-      unit: String,
+      value: { type: Number },
+      unit: { type: String }
     },
     // L'autore viene impostato dal token (req.user.id)
     author: { type: mongoose.Schema.Types.ObjectId, ref: "Author", required: true },
