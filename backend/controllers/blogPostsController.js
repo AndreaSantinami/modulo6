@@ -9,7 +9,7 @@ exports.createBlogPost = async (req, res) => {
   try {
     const authorId = req.user.id;
 
-    // Se esiste un file "cover", carichiamolo su Cloudinary
+    // Se esiste un file "cover", carichiamolo su Cloudinary, altrimenti coverUrl rimane una stringa vuota
     let coverUrl = "";
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path);
@@ -22,10 +22,11 @@ exports.createBlogPost = async (req, res) => {
       unit: req.body.readTimeUnit,
     };
 
+    // Creiamo il nuovo post; il campo cover non è obbligatorio
     const newPost = new BlogPost({
       category: req.body.category,
       title: req.body.title,
-      cover: coverUrl, // se non c'è file, rimarrà stringa vuota
+      cover: coverUrl, // se non viene inviato nessun file, cover sarà una stringa vuota
       readTime,
       content: req.body.content,
       author: authorId,
@@ -38,6 +39,7 @@ exports.createBlogPost = async (req, res) => {
     res.status(500).json({ msg: "Errore nella creazione del post" });
   }
 };
+
 
 
 // Ottiene la lista di tutti i post
